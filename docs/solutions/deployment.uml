@@ -1,0 +1,100 @@
+@startuml
+
+actor user as "User"
+control ui as "MetalK8s UI"
+control saltmaster as "Salt Master"
+entity bootstrap as "Bootstrap node"
+control apiserver as "Kubernetes API"
+control registry as "MetalK8s registry"
+
+== Initialization ==
+
+user -> bootstrap : Upload Solution ISO
+user -> bootstrap : Add ISO path to the "SolutionsConfiguration" file
+note left
+    This file, yet-to-be-defined,
+    will serve as declaration of
+    Solutions "available" to MetalK8s
+end note
+
+== Validation ==
+
+user -> ui : Request Solutions listing page
+ui -> saltmaster ++ : Request Solutions status
+saltmaster -> saltmaster : Read "SolutionsConfiguration"
+
+loop For each Solution defined
+
+    |||
+
+    loop For each Solution ISOs declared
+
+        saltmaster -> bootstrap ++ : Check ISO file (against our standards/constraints)
+        |||
+        bootstrap --> saltmaster -- : Return status (valid or not) and metadata if any
+
+    end
+
+    |||
+
+    saltmaster <-> apiserver : Check if Operator is deployed (and check its version, if configured)
+
+end
+
+saltmaster --> ui -- : Return Solutions status and metadata
+ui -> user : Display Solutions with their Operator and ISOs statuses
+
+|||
+
+== Deployment ==
+
+user -> ui : Click on a Solution's "Deploy" button
+ui -> saltmaster ++ : Request Solution deployment (select by Solution name)
+
+saltmaster -> saltmaster : Find name in "SolutionsConfiguration"
+saltmaster -> bootstrap ++ : Run "populate_solution_images" state
+
+loop For each ISO in the configured Solution
+    bootstrap -> registry : Inject images
+end
+
+bootstrap --> saltmaster -- : State executed successfully
+saltmaster <-> apiserver : Retrieve all Operator Deployments matching this Solution labels
+note left
+    Clear definition of this "selection"
+    is yet to be defined
+end note
+
+alt No Deployment match the expected Solution
+
+    |||
+    saltmaster -> apiserver : Create the Operator Deployment and CRDs
+    |||
+
+else Deployment exists, in a different version
+
+    saltmaster -> apiserver : Update the Operator Deployment
+    note right #E67E22
+        This may need some extra steps,
+        e.g. if CRDs changed
+    end note
+    |||
+
+else Deployment matches
+
+    saltmaster --> saltmaster : Nothing to do
+    |||
+
+end
+
+opt If the Solution has a UI
+
+    saltmaster -> apiserver : Create/Update the UI Deployment
+    |||
+
+end
+
+saltmaster --> ui -- : Completed deployment of Solution
+ui -> user : Show deployment execution status (success/failure)
+
+@enduml
