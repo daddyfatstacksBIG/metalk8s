@@ -1,4 +1,4 @@
-SOURCES := $(wildcard *.uml)
+SOURCES := $(wildcard **/*.uml)
 
 default: all
 .PHONY: default
