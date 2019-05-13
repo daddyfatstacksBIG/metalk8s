@@ -79,7 +79,7 @@ Install skopeo:
 Import {{ image.name }} image:
   docker_registry.image_managed:
     - name: {{ build_image_name(image.name, image.tag, include_port=True) }}
-    - archive_path: {{ metalk8s.iso_root_path }}/images/{{ image.name }}-{{ image.tag }}.tar.gz
+    - archive_path: {{ metalk8s.iso_root_path[saltenv] }}/images/{{ image.name }}-{{ image.tag }}.tar.gz
     - tls_verify: false
     - require:
       - pkg: Install skopeo
