@@ -23,6 +23,7 @@ py
 rpmspec
 repo
 scality
+skopeo
 sls
 timestamp
 txt
