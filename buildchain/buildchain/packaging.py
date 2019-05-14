@@ -105,8 +105,10 @@ def task__download_packages() -> types.TaskDict:
         'title': lambda task: utils.title_with_target1('GET PKGS', task),
         'actions': [cmd],
         'targets': [constants.PKG_ROOT/'var'],
-        'file_dep': [BUILDER.destination, pkg_list],
-        'task_dep': ['_package_mkdir_root', '_package_mkdir_iso_root'],
+        'file_dep': [pkg_list],
+        'task_dep': [
+            '_package_mkdir_root', '_package_mkdir_iso_root', '_build_container'
+        ],
         'clean': [clean],
         'uptodate': [True],
         # Prevent Docker from polluting our output.
@@ -158,7 +160,7 @@ PACKAGES : Dict[str, Tuple[targets.Package, ...]] = {
                 Path('v{}.tar.gz'.format(CALICO_CNI_PLUGIN_VERSION)),
             ],
             builder=BUILDER,
-            task_dep=['_package_mkdir_root'],
+            task_dep=['_package_mkdir_root', '_build_container'],
         ),
     ),
 }
