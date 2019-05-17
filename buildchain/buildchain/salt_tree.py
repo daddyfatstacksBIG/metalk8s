@@ -267,13 +267,6 @@ SALT_FILES : Tuple[Union[Path, targets.FileTarget], ...] = (
     Path('salt/metalk8s/orchestrate/upgrade/etcd.sls'),
     Path('salt/metalk8s/orchestrate/register_etcd.sls'),
 
-    Path('salt/metalk8s/registry/deployed.sls'),
-    Path('salt/metalk8s/registry/files/registry-manifest.yaml.j2'),
-    Path('salt/metalk8s/registry/init.sls'),
-    Path('salt/metalk8s/registry/installed.sls'),
-    Path('salt/metalk8s/registry/macro.sls'),
-    Path('salt/metalk8s/registry/populated.sls'),
-
     Path('salt/metalk8s/repo/configured.sls'),
     Path('salt/metalk8s/repo/deployed.sls'),
     Path('salt/metalk8s/repo/files/nginx.conf.j2'),
@@ -281,6 +274,7 @@ SALT_FILES : Tuple[Union[Path, targets.FileTarget], ...] = (
     Path('salt/metalk8s/repo/files/package-repositories-manifest.yaml.j2'),
     Path('salt/metalk8s/repo/init.sls'),
     Path('salt/metalk8s/repo/installed.sls'),
+    Path('salt/metalk8s/repo/macro.sls'),
     Path('salt/metalk8s/repo/offline.sls'),
 
     Path('salt/metalk8s/roles/bootstrap/absent.sls'),
@@ -317,7 +311,6 @@ SALT_FILES : Tuple[Union[Path, targets.FileTarget], ...] = (
 
     Path('salt/_modules/containerd.py'),
     Path('salt/_modules/cri.py'),
-    Path('salt/_modules/docker_registry.py'),
     Path('salt/_modules/metalk8s_kubernetes.py'),
     Path('salt/_modules/metalk8s_etcd.py'),
     Path('salt/_modules/metalk8s.py'),
@@ -334,7 +327,6 @@ SALT_FILES : Tuple[Union[Path, targets.FileTarget], ...] = (
 
     Path('salt/_states/containerd.py'),
     Path('salt/_states/kubeconfig.py'),
-    Path('salt/_states/docker_registry.py'),
     Path('salt/_states/metalk8s.py'),
     Path('salt/_states/metalk8s_etcd.py'),
     Path('salt/_states/metalk8s_kubernetes.py'),
