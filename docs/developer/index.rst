@@ -5,3 +5,4 @@ Developer Guide
 
    architecture/index
    best_practices/index
+   solutions/index
