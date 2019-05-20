@@ -64,6 +64,10 @@
         'name': 'configmap-reload',
         'tag': 'v0.0.1',
     },
+    {
+        'name': 'alertmanager',
+        'tag': 'v0.15.2',
+    },
 ] %}
 
 include:
