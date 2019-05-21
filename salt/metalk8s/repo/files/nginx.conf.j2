@@ -6,4 +6,7 @@ server {
         root   /var/www/repositories;
         autoindex on;
     }
+
+    include conf.d/{{ nginx_registry_config }};
+    include conf.d/{{ nginx_registry }};
 }
