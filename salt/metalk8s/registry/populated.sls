@@ -68,6 +68,10 @@
         'name': 'alertmanager',
         'tag': 'v0.15.2',
     },
+    {
+        'name': 'prometheus',
+        'tag': 'v2.4.3',
+    },
 ] %}
 
 include:
