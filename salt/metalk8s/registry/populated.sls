@@ -84,6 +84,10 @@
         'name': 'addon-resizer',
         'tag': '1.0',
     },
+    {
+        'name': 'grafana',
+        'tag': '5.2.4',
+    },
 ] %}
 
 include:
