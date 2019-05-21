@@ -1,6 +1,7 @@
 import { call, takeEvery, put, select } from 'redux-saga/effects';
 import * as Api from '../services/api';
 import history from '../history';
+import { connectSaltApiAction } from './app/nodes';
 
 // Actions
 const AUTHENTICATE = 'AUTHENTICATE';
@@ -112,7 +113,12 @@ export function* authenticateSaltApi() {
   const result = yield call(Api.authenticateSaltApi, api.url_salt, user);
   if (!result.error) {
     yield put(setSaltAuthenticationSuccessAction(result));
-    yield call(history.push, '/');
+    yield put(
+      connectSaltApiAction({
+        url: api.url_salt,
+        token: result.data.return[0].token
+      })
+    );
   } else {
     yield call(logout);
   }

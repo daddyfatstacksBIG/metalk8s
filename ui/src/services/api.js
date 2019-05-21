@@ -127,7 +127,7 @@ export async function deployNode(url, token, node, version) {
     return await axios.post(
       url,
       {
-        client: 'runner',
+        client: 'runner_async',
         fun: 'state.orchestrate',
         arg: ['metalk8s.orchestrate.deploy_node'],
         kwarg: {
