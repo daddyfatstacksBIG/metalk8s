@@ -28,7 +28,7 @@ Configure salt master roots paths:
     - dataset:
         file_roots:
           {{ saltenv }}:
-            - {{ metalk8s.iso_root_path }}/salt
+            - {{ metalk8s.iso_root_path[saltenv] }}/salt
         pillar_roots:
           {{ saltenv }}:
-            - {{ metalk8s.iso_root_path }}/pillar
+            - {{ metalk8s.iso_root_path[saltenv] }}/pillar
