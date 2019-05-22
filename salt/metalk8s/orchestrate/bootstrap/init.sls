@@ -148,6 +148,10 @@ Deploy Kubernetes objects:
     - metalk8s.salt.master.deployed
     - metalk8s.addons.ui.deployed
     - metalk8s.addons.prometheus-operator.deployed
+    - metalk8s.addons.alertmanager.deployed
+    - metalk8s.addons.prometheus.deployed
+    - metalk8s.addons.kube-state-metrics.deployed
+    - metalk8s.addons.grafana.deployed
   - saltenv: {{ saltenv }}
   - pillar: {{ pillar_data | tojson }}
   - require:

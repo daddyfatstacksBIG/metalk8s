@@ -85,6 +85,10 @@ SALT_FILES : Tuple[Union[Path, targets.FileTarget], ...] = (
         file_dep=[constants.VERSION_FILE],
     ),
 
+    Path('salt/metalk8s/addons/alertmanager/deployed.sls'),
+    Path('salt/metalk8s/addons/grafana/deployed.sls'),
+    Path('salt/metalk8s/addons/kube-state-metrics/deployed.sls'),
+    Path('salt/metalk8s/addons/prometheus/deployed.sls'),
     Path('salt/metalk8s/addons/prometheus-operator/deployed.sls'),
 
     Path('salt/metalk8s/addons/ui/deployed.sls'),
