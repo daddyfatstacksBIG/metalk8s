@@ -3,9 +3,9 @@
 
 {%- macro build_image_name(name='', tag='', include_port=False) -%}
 {%- if include_port -%}
-"{{ metalk8s.endpoints.registry.ip }}:{{ metalk8s.endpoints.registry.ports.registry }}/{{ saltenv }}/{{ name }}:{{ tag }}"
+{{ metalk8s.endpoints.registry.ip }}:{{ metalk8s.endpoints.registry.ports.registry }}/{{ saltenv }}/{{ name }}{{ ':' ~ tag if tag else '' }}
 {%- else -%}
-"{{ metalk8s.endpoints.registry.ip }}/{{ saltenv }}/{{ name }}:{{ tag }}"
+{{ metalk8s.endpoints.registry.ip }}/{{ saltenv }}/{{ name }}{{ ':' ~ tag if tag else '' }}
 {%- endif -%}
 {%- endmacro -%}
 

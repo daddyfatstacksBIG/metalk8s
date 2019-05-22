@@ -64,6 +64,30 @@
         'name': 'configmap-reload',
         'tag': 'v0.0.1',
     },
+    {
+        'name': 'alertmanager',
+        'tag': 'v0.15.2',
+    },
+    {
+        'name': 'prometheus',
+        'tag': 'v2.4.3',
+    },
+    {
+        'name': 'kube-rbac-proxy',
+        'tag': 'v0.3.1',
+    },
+    {
+        'name': 'kube-state-metrics',
+        'tag': 'v1.3.1',
+    },
+    {
+        'name': 'addon-resizer',
+        'tag': '1.0',
+    },
+    {
+        'name': 'grafana',
+        'tag': '5.2.4',
+    },
 ] %}
 
 include:
